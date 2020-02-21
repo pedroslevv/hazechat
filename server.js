@@ -22,7 +22,7 @@ app.post('/hook', function(req, res){
         if (text.startsWith("/start")) {
             console.log("/start chatId " + chatId);
             sendTelegramMessage(chatId,
-                "*Welcome to Intergram* \n" +
+                "*Welcome to HazeChat* \n" +
                 "Your unique chat id is `" + chatId + "`\n" +
                 "Use it to link between the embedded chat and this telegram chat",
                 "Markdown");
