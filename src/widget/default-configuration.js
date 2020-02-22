@@ -1,15 +1,14 @@
 
 export const defaultConfiguration = {
-    titleClosed: 'Click to chat!',
-    titleOpen: 'Let\'s chat!',
-    closedStyle: 'chat', // button or chat
+    titleClosed: '¡Hola!¡Soy Quallie!',
+    titleOpen: 'Quallie',
+    closedStyle: 'button', // button or chat
     closedChatAvatarUrl: '', // only used if closedStyle is set to 'chat'
-    cookieExpiration: 1, // in days. Once opened, closed chat title will be shown as button (when closedStyle is set to 'chat')
-    introMessage: 'Hello! How can we help you?',
+    cookieExpiration: 0.0000000000000000000000000000001, // in days. Once opened, closed chat title will be shown as button (when closedStyle is set to 'chat')
+    introMessage: '¡Hola!¡Hola! ¿Como estás? Mi nombre es Quallie y soy un ChatBot de Business Intelligence ¿En qué puedo ayudarte hoy?',
     autoResponse: 'Looking for the first available admin (It might take a minute)',
-    autoNoResponse: 'It seems that no one is available to answer right now. Please tell us how we can ' +
-    'contact you, and we will get back to you as soon as we can.',
-    placeholderText: 'Send a message...',
+    autoNoResponse: 'Al parecer no me encuentro en funcionamiento. Contacta con el equipo de Quales.',
+    placeholderText: 'Envia un mensaje',
     displayMessageTime: true,
     mainColor: '#1f8ceb',
     alwaysUseFloatingButton: false,
