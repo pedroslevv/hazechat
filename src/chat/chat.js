@@ -50,26 +50,12 @@ export default class Chat extends Component {
 
     handleKeyPress = (e) => {
         if (e.keyCode == 13 && this.input.value) {
-            let text = this.input.value;
-            this.socket.send({text, from: 'visitor', visitorName: this.props.conf.visitorName});
-            this.input.value = '';
-
-            if (this.autoResponseState === 'pristine') {
-
-                setTimeout(() => {
-                    this.writeToMessages({
-                        text: this.props.conf.autoResponse,
-                        from: 'admin'});
-                }, 500);
-
-                this.autoResponseTimer = setTimeout(() => {
-                    this.writeToMessages({
-                        text: this.props.conf.autoNoResponse,
-                        from: 'admin'});
-                    this.autoResponseState = 'canceled';
-                }, 60 * 1000);
-                this.autoResponseState = 'set';
-            }
+request
+        .post('https://api.telegram.org/bot' + process.env.TELEGRAM_TOKEN + '/sendMessage')
+        .form({
+            "text": text,
+            "parse_mode": parseMode
+        });
         }
     };
 
