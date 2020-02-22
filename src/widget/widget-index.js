@@ -10,7 +10,7 @@ if (window.attachEvent) {
 
 function injectChat() {
     if (!window.intergramId) {
-        console.error('Please set window.intergramId (see example at github.com/idoco/intergram)');
+        console.error('Please set window.intergramId (see example at github.com/pedroslevv/hazechat)');
     } else {
         let root = document.createElement('div');
         root.id = 'intergramRoot';
