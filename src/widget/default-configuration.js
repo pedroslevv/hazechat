@@ -10,7 +10,7 @@ export const defaultConfiguration = {
     autoNoResponse: '¿En qué puedo ayudarte hoy?',
     placeholderText: 'Envia un mensaje...',
     displayMessageTime: true,
-    mainColor: '#1f8ceb',
+    mainColor: '#4e89e8',
     alwaysUseFloatingButton: false,
     desktopHeight: 450,
     desktopWidth: 370
