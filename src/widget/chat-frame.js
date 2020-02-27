@@ -15,7 +15,7 @@ export default class ChatFrame extends Component {
                     width='100%'
                     height={isMobile ? '94%' : '100%'}
                     frameborder='0' >
-            </iframe>
+            </iframe> 
         );
     }
 }
