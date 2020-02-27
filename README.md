@@ -1,4 +1,5 @@
-# HazeChat -
+# HazeChat - By 
+<span style="color: green"> Haze Inc </span>
 
 A **Free** live chat widget that you can easily add to your website. It will let you chat with your website visitors using your Telegram messenger or bot. 
 
