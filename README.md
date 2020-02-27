@@ -1,11 +1,20 @@
 # HazeChat - By 
-<span style="color: green"> Haze Inc </span>
 
-A **Free** live chat widget that you can easily add to your website. It will let you chat with your website visitors using your Telegram messenger or bot. 
+A **Free Generic** live chat widget that you can easily add to your website for multiple chat purposes. 
 
 
 ##### How?
-You initiate a chat with Telegram bot and add 2 lines of script to your website to embed the widget. Visitors' messages are sent from the chat widget to my bot server, which sends them to your Telegram messenger where you can answer them. You can also self-host the bot server to get more control of this process.
+Host my repostory and code income or outbound communication from chat.js
 
+Script for adding widget to your website:
 
+<script> 
+    window.intergramServer = "Server url" //url where this repo is hosted
+</script>
+<script id="intergram" type="text/javascript" src="<Server url>/js/widget.js"></script>
+
+#### Demo Page
+You can visit my Hosted repository on a Heroku account on:
+
+https://haze-chatwidgeter.herokuapp.com/
 
