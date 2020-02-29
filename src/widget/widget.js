@@ -79,6 +79,11 @@ export default class Widget extends Component {
             pristine: false,
             isChatOpen: !this.state.isChatOpen,
         }
+        if(!this.state.isChatOpen && !this.wasChatOpened()){
+            this.setCookie();
+            stateData.wasChatOpened = true;
+        }
+        this.setState(stateData);
     }
 
     setCookie = () => {
