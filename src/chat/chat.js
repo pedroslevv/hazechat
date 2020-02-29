@@ -59,32 +59,24 @@ export default class Chat extends Component {
                 setTimeout(() => {
                     this.writeToMessages({
                         text: this.props.conf.autoResponse,
-                        from: 'admin'});
-                }, 500);
-
-                this.autoResponseTimer = setTimeout(() => {
-                    this.writeToMessages({
                         text: this.props.conf.autoNoResponse,
                         from: 'admin'});
-                    this.autoResponseState = 'canceled';
-                }, 60 * 1000);
+                }, 500);
                 this.autoResponseState = 'set';
             }
         }
+        
+    //aca es donde la respuesta del usuario se manda al bot
+    
     };
 
     incomingMessage = (msg) => {
         this.writeToMessages(msg);
-        if (msg.from === 'admin') {
+
             document.getElementById('messageSound').play();
 
-            if (this.autoResponseState === 'pristine') {
-                this.autoResponseState = 'canceled';
-            } else if (this.autoResponseState === 'set') {
-                this.autoResponseState = 'canceled';
-                clearTimeout(this.autoResponseTimer);
-            }
-        }
+//aca es donde el bot responde hacia el usuario.
+        
     };
 
     writeToMessages = (msg) => {
