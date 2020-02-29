@@ -41,8 +41,8 @@ export default class Chat extends Component {
                        ref={(input) => { this.input = input }}
                        onKeyPress={this.handleKeyPress}/>
 
-                <a class="banner" href="http://www.hazear.com" target="_blank">
-                    Powered by <b>Haze Inc</b>&nbsp;
+                <a class="banner" href="https://github.com/pedroslevv/hazechat" target="_blank">
+                    Powered by <b> Haze Inc </b> &nbsp;
                 </a>
             </div>
         );
