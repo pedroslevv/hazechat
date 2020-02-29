@@ -1,105 +1,122 @@
-# CloudBot
+# Telegram bot
 
-CloudBot is a simple, fast, expandable open-source Python IRC Bot!
+## Preparation
 
-## Project Status & A more updated CloudBot
+You will need this:
 
-CloudBot is currently unmaintained. The project possibly usable, but there are currently no developers building new features or fixing bugs.
+* Application for editing Python code. Basically any text editor will do but [PyCharm](https://www.jetbrains.com/pycharm/) 
+  is a really good one (the community edition is also free).
+* Telegram account. Sign up for free on [telegram.org](https://telegram.org/).
+* Heroku account. Sign up for free on [heroku.com](https://signup.heroku.com/dc). We use Heroku to deploy our bot so 
+  that Telegram can find it.
+* The Heroku CLI (a tool for deploying applications to Heroku)
+* The Heroku Builds plugin for the Heroku CLI
 
-There are several forks of CloudBot which you may want to use instead. These projects have much more work done on them, and are thus incompatible. If you already have a running CloudBot instance you will probably need to start over from
-scratch.
+**How to install Heroku CLI and Heroku Builds:**
 
-- snoonetIRC/CloudBot : https://github.com/snoonetIRC/CloudBot
+First, [install the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 
-  This is a more active fork being created by members of Snoonet that might be a better option for your needs. Keep in mind that, as a project more than a thousand commits ahead of this one, if you already have a running CloudBot instance you will probably need to start over from scratch.
+Second, install the Heroku Builds plugin for the Heroku CLI (we use this to upload our applications to Heroku):
 
-- gonzobot : https://github.com/edwardslabs/CloudBot
+```
+heroku plugins:install heroku-builds
+```
 
-If there are any other maintained forks of CloudBot, pull requests to add them to the README are welcome.
+## Step By Step
 
-## Getting CloudBot
+### Tell Telegram you want to create a bot
 
-There are currently two different branches of this repository, each with a different level of stability:
- - **master** *(stable)*: This branch contains stable, tested code. This is the branch you should be using if you just want to run your own CloudBot! [![Build Status](https://travis-ci.org/CloudBotIRC/CloudBot.svg?branch=master)](https://travis-ci.org/CloudBotIRC/CloudBot)
- - **python3.4** *(unstable)*: This branch is where we test and develop new features. If you would like to help develop CloudBot, you can use this branch. [![Build Status](https://travis-ci.org/CloudBotIRC/CloudBot.svg?branch=python3.4)](https://travis-ci.org/CloudBotIRC/CloudBot)
+Sign in to Telegram and do this:
+- Find the bot BotFather in Telegram by searching for it.
+- Click on BotFather and start chatting with "him" by clicking the Start button at the bottom of the chat window (or 
+  by sending him the message `/newbot`).
+- Answer BotFather's questions. Having a hard time figuring out a name for your bot? Chat with the bot [hellobotnamebot](t.me/hellobotnamebot) if you want suggestions.
+- After a couple of questions you will get a message starting with "Done! Congratulations...". This message will contain 
+  your API key (shown in red). The API key is the password of your bot. 
+- Save the API key in a text file on your computer, for later use.
+
+### Get the source code
+
+[Download the Hello World bot source code](https://github.com/mikaelsvensson/helloworld-telegram-chat-bot/archive/master.zip) 
+and extract it to a new folder.
+
+### Create the app in Heroku
+
+Open a terminal window.
+
+Go to the folder when you extracted the source code. On a Mac, you _probably_ can do this by entering this command into
+the terminal: `cd Downloads/helloworld-telegram-chat-bot-master`
+
+You must now create an "application" in Heroku. This application must have a name. The name of your 
+application in Heroku does not have to match the name of your bot in Telegram, but it is convenient. In the commands 
+below, replace _NAME_OF_YOUR_HEROKU_APPLICATION_ with the name you want. Think of this as Heroku's name for your bot. 
+
+Run this command (the command may ask you for your Heroku username and password):
+```
+heroku apps:create NAME_OF_YOUR_HEROKU_APPLICATION
+```
  
-New releases will be pushed from **python3.4** to **master** whenever we have a stable version to release. This should happen on a fairly regular basis, so you'll never be too far behind the latest improvements.
-
-## Installing CloudBot
-
-Firstly, CloudBot will only run on **Python 3.4 or higher**. Because we use the asyncio module, you will not be able to use any other versions of Python.
-
-To install CloudBot on *nix (linux, etc), see [here](https://github.com/CloudBotIRC/CloudBot/wiki/Installing-on-*nix)
-
-To install CloudBot on Windows, see [here](https://github.com/CloudBotIRC/CloudBot/wiki/Installing-on-Windows)
-
-
-### Running CloudBot
-
-Before you run the bot, rename `config.default.json` to `config.json` and edit it with your preferred settings. You can check if your JSON is valid using [jsonlint.com](http://jsonlint.com/)!
-
-Once you have installed the required dependencies and renamed the config file, you can run the bot! Make sure you are in the correct folder and run the following command:
+Make your API key, sent to you by BotFather, available to your Heroku application by entering this command in your terminal:
 
 ```
-python3.4 -m cloudbot
+heroku config:set TELEGRAM_BOT_APIKEY=your-bot-api-key --app NAME_OF_YOUR_HEROKU_APPLICATION
 ```
 
-Note that you can also run the `cloudbot/__main__.py` file directly, which will work from any directory.
+### Get it working
+
+Open `init_webhook.py`, in the folder `app`, and set the `HOST_NAME` constant to the app's address. Skip the `/` at the end. 
+It should look something like this: `HOST_NAME = 'https://NAME_OF_YOUR_HEROKU_APPLICATION.herokuapp.com'`
+
+Deploy to Heroku using these commands:
+
 ```
-python3.4 CloudBot/cloudbot/__main__.py
+heroku builds:create --app NAME_OF_YOUR_HEROKU_APPLICATION
+heroku ps:scale web=1 --app NAME_OF_YOUR_HEROKU_APPLICATION
 ```
-Specify the path as /path/to/repository/cloudbot/__main__.py, where `cloudbot` is inside the repository directory.
 
-## Getting help with CloudBot
+Within a minute or so, you should now be able to find your bot in Telegram by searching for it using the name you 
+sent to BotFather earlier. 
 
-### Documentation
+Start chatting with your new bot. Does it send back everything you send it? Good.
 
-The CloudBot documentation is currently somewhat outdated and may not be correct. If you need any help, please visit our [IRC channel](irc://irc.esper.net/cloudbot) and we will be happy to assist you.
+**You now have a fully functional bot! Congratulations!**
 
-To write your own plugins, visit the [Plugins Wiki Page](https://github.com/CloudBotIRC/CloudBot/wiki/Writing-your-first-command-plugin).
+## Next steps
 
-More at the [Wiki Main Page](https://github.com/CloudBotIRC/CloudBot/wiki).
+In `app/views.py` there is a function called `process_text`. Use that to change the text and make the bot smarter.
 
-### Support
+If you want something to get you started you can try these [ideas on chat bots](./bot-ideas.md).
 
-The developers reside in [#CloudBot](irc://irc.esper.net/cloudbot) on [EsperNet](http://esper.net) and would be glad to help you.
+Run this command after you change something, otherwise the bot will not see your changes: 
 
-If you think you have found a bug/have an idea/suggestion, please **open an issue** here on Github and contact us on IRC!
+```
+heroku builds:create --app NAME_OF_YOUR_HEROKU_APPLICATION
+```
 
-## Example CloudBots
+The `heroku builds:create` command shows an error about "tar" not being installed on some computers. You can safely ignore that error.
 
-You can find a number of example bots in [#CloudBot](irc://irc.esper.net/cloudbot "Connect via IRC to #CloudBot on irc.esper.net").
+## A Closer Look
 
-## Changelog
+Want to know more about Telegram bots? Check out <https://core.telegram.org/bots>.
 
-See [CHANGELOG.md](https://github.com/CloudBotIRC/CloudBot/blob/master/CHANGELOG.md)
+More reading about Heroku:
 
-## License
+- Heroku Architecture: <https://devcenter.heroku.com/categories/heroku-architecture>
+- Python on Heroku: <https://devcenter.heroku.com/articles/getting-started-with-python>
+- Heroku CLI cheat sheet: <http://ricostacruz.com/cheatsheets/heroku.html>
+- Heroku CLI usage: <https://devcenter.heroku.com/articles/using-the-cli>
 
-CloudBot is **licensed** under the **GPL v3** license. The terms are as follows.
+We're using Flask, a web service library for Python, and a lot of information about it can be 
+found on <https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world>.
 
-![GPL V3](https://www.gnu.org/graphics/gplv3-127x51.png)
-    
-    CloudBot
+## Troubleshooting
 
-    Copyright © 2011-2015 Luke Rogers / CloudBot Project
+Ask yourself this if you have problems:
 
-    CloudBot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    CloudBot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with CloudBot.  If not, see <http://www.gnu.org/licenses/>.
-    
-This product includes GeoLite2 data created by MaxMind, available from
-<a href="http://www.maxmind.com">http://www.maxmind.com</a>. GeoLite2 databases are distributed under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-sa/3.0/)
-
-![Powered by wordnik](https://www.wordnik.com/img/wordnik_badge_a1.png)
-
-This product uses data from <a href="http://wordnik.com">http://wordnik.com</a> in accordance with the wordnik.com API <a href="http://developer.wordnik.com/#!/terms">terms of service</a>.
+* Have you saved your changes?
+* Have you uploaded your saved changes to Heroku using `heroku builds:create --app NAME_OF_YOUR_HEROKU_APPLICATION`?
+* Have you written the correct URL or hostname?
+* Have you confused your Heroku application name with your Telegram bot name?
+* Are you working in the correct folder?
+* Have you accidentally mixed up small and big letters? "Heroku" and "heroku" is not the same thing when typing 
+  a command in the terminal.  
