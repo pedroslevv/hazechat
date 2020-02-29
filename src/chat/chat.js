@@ -53,6 +53,7 @@ export default class Chat extends Component {
             let text = this.input.value;
             this.socket.send({text, from: 'visitor', visitorName: this.props.conf.visitorName});
             this.input.value = '';
+            
 
             if (this.autoResponseState === 'pristine') {
 
@@ -62,6 +63,7 @@ export default class Chat extends Component {
                         text: this.props.conf.autoNoResponse,
                         from: 'admin'});
                 }, 500);
+                document.getElementById('messageSound').play();
                 this.autoResponseState = 'set';
             }
         }
