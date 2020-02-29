@@ -53,32 +53,42 @@ export default class Chat extends Component {
             let text = this.input.value;
             this.socket.send({text, from: 'visitor', visitorName: this.props.conf.visitorName});
             this.input.value = '';
-            
 
             if (this.autoResponseState === 'pristine') {
 
                 setTimeout(() => {
                     this.writeToMessages({
                         text: this.props.conf.autoResponse,
-                        text: this.props.conf.autoNoResponse,
                         from: 'admin'});
                 }, 500);
-                document.getElementById('messageSound').play();
+                
+                setTimeout(() => {
+                    this.writeToMessages({
+                    text: this.props.conf.autoNoResponse,        
+                        from: 'admin'});
+                }, 500);
+                
+                
+                
+                this.autoResponseTimer = setTimeout(() => {
+                    this.writeToMessages({
+                        text: this.props.conf.autoNoResponse,
+                        from: 'admin'});
+                    this.autoResponseState = 'canceled';
+                }, 60 * 1000);
                 this.autoResponseState = 'set';
             }
         }
-        
-    //aca es donde la respuesta del usuario se manda al bot
-    
     };
 
     incomingMessage = (msg) => {
-        this.writeToMessages(msg);
-
+        this.writeToMessages(msg); //este es el mensaje que el usuario escribe
+        
+        //en esta parte depende de si el bot responde
+        if (msg.from === 'admin') {
             document.getElementById('messageSound').play();
 
-//aca es donde el bot responde hacia el usuario.
-        
+        }
     };
 
     writeToMessages = (msg) => {
