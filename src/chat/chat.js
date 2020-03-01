@@ -1,6 +1,8 @@
 import * as store from 'store'
 import io from 'socket.io-client'
-
+//python libraries
+import org.python.util.PythonInterpreter;
+import org.python.core.PyObject;
 import { h, Component } from 'preact';
 import MessageArea from './message-area';
 
@@ -48,6 +50,8 @@ export default class Chat extends Component {
         );
     }
 
+    
+    //aca chekea si se toco el enter
     handleKeyPress = (e) => {
         if (e.keyCode == 13 && this.input.value) {
             let text = this.input.value;
@@ -56,27 +60,37 @@ export default class Chat extends Component {
 
             if (this.autoResponseState === 'pristine') {
 
+                
+                //hola message
                 setTimeout(() => {
                     this.writeToMessages({
                         text: this.props.conf.autoResponse,
                         from: 'admin'});
                 }, 500);
                 
+                //En que puedo ayudarte message
                 setTimeout(() => {
                     this.writeToMessages({
                     text: this.props.conf.autoNoResponse,        
                         from: 'admin'});
                 }, 500);
                 
-                
-                
-                this.autoResponseTimer = setTimeout(() => {
-                    this.writeToMessages({
-                        text: this.props.conf.autoNoResponse,
-                        from: 'admin'});
-                    this.autoResponseState = 'canceled';
-                }, 60 * 1000);
                 this.autoResponseState = 'set';
+                
+                
+                //aca tiene que venir la funcion python que duplica, o una llamada al bot.
+                public class JavaMain {
+ 
+    public static void main(String[] args) {
+        PythonInterpreter interpreter = new PythonInterpreter();
+        try {
+            interpreter.execfile("C:\Users\Admin\Downloads\HazearBot\app\tester.py");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+ //--------------------------------------------------------------------------------------------------------------python call
             }
         }
     };
