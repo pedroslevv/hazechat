@@ -1,8 +1,5 @@
 import * as store from 'store'
 import io from 'socket.io-client'
-//python libraries
-import org.python.util.PythonInterpreter;
-import org.python.core.PyObject;
 import { h, Component } from 'preact';
 import MessageArea from './message-area';
 
@@ -79,17 +76,7 @@ export default class Chat extends Component {
                 
                 
                 //aca tiene que venir la funcion python que duplica, o una llamada al bot.
-                public class JavaMain {
- 
-    public static void main(String[] args) {
-        PythonInterpreter interpreter = new PythonInterpreter();
-        try {
-            interpreter.execfile("C:\Users\Admin\Downloads\HazearBot\app\tester.py");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
+
  //--------------------------------------------------------------------------------------------------------------python call
             }
         }
