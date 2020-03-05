@@ -6,6 +6,8 @@ import MessageArea from './message-area';
 import React, { Component } from 'react';
 import axios from 'axios';
 
+export default Image;  
+
 export default class Chat extends Component {
 
     autoResponseState = 'pristine'; // pristine, set or canceled
@@ -109,7 +111,7 @@ export default class Chat extends Component {
 }
 
             
-export default Image;            
+          
                 
                 
                 
