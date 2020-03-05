@@ -85,30 +85,7 @@ export default class Chat extends Component {
 
                 
                 
-                class Image extends Component {
-  state = { source: null };
 
-  componentDidMount() {
-    axios
-      .get(
-        '3.16.29.118:5000/processText?userId=7878787878&text=Horas de enero',
-        { responseType: 'arraybuffer' },
-      )
-      .then(response => {
-        const base64 = btoa(
-          new Uint8Array(response.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            '',
-          ),
-        );
-        this.setState({ source: "data:;base64," + base64 });
-      });
-  }
-
-  render() {
-    return <img src={this.state.source} />;
-  }
-}
 
             
           
