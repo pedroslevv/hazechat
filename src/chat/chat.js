@@ -3,6 +3,9 @@ import io from 'socket.io-client'
 import { h, Component } from 'preact';
 import MessageArea from './message-area';
 
+import React, { Component } from 'react';
+import axios from 'axios';
+
 export default class Chat extends Component {
 
     autoResponseState = 'pristine'; // pristine, set or canceled
@@ -48,6 +51,7 @@ export default class Chat extends Component {
     }
 
     
+    
     //aca chekea si se toco el enter
     handleKeyPress = (e) => {
         if (e.keyCode == 13 && this.input.value) {
@@ -77,8 +81,57 @@ export default class Chat extends Component {
                 
                 //aca tiene que venir la funcion python que duplica, o una llamada al bot.
 
+                
+                
+                class Image extends Component {
+  state = { source: null };
+
+  componentDidMount() {
+    axios
+      .get(
+        '3.16.29.118:5000/processText?userId=7878787878&text=Horas de enero',
+        { responseType: 'arraybuffer' },
+      )
+      .then(response => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        );
+        this.setState({ source: "data:;base64," + base64 });
+      });
+  }
+
+  render() {
+    return <img src={this.state.source} />;
+  }
+}
+
+            
+export default Image;            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
  //--------------------------------------------------------------------------------------------------------------python call
             }
+            
+            
         }
     };
 
