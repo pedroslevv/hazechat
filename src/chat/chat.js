@@ -2,11 +2,7 @@ import * as store from 'store'
 import io from 'socket.io-client'
 import { h, Component } from 'preact';
 import MessageArea from './message-area';
-
-import React, { Component } from 'react';
-import axios from 'axios';
-
-export default Image;  
+ 
 
 export default class Chat extends Component {
 
@@ -81,30 +77,9 @@ export default class Chat extends Component {
                 this.autoResponseState = 'set';
                 
                 
-                //aca tiene que venir la funcion python que duplica, o una llamada al bot.
-
+                //aca tiene que venir la funcion python que duplica, o una llamada al bot.         
                 
-                
-
-
-            
-          
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+     
                 
                 
  //--------------------------------------------------------------------------------------------------------------python call
