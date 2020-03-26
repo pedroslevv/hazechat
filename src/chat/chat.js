@@ -80,7 +80,7 @@ export default class Chat extends Component {
             
             //respuesta quallie
             
-    fetch("https://3.16.29.118:5000/processText?userId=7878787878&text=Horas Enero")
+    fetch("http://3.16.29.118:5000/processText?userId=7878787878&text=" + text)
     .then (function(response){
         this.writeToMessages({
         text: response,        
