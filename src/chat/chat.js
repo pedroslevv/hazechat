@@ -75,17 +75,22 @@ export default class Chat extends Component {
                 }, 500);
                 
                 this.autoResponseState = 'set';
-                
-                
-                //aca tiene que venir la funcion python que duplica, o una llamada al bot.         
-                
-     
-                
-                
- //--------------------------------------------------------------------------------------------------------------python call
+            
             }
-            
-            
+            $.ajax({
+                        url: 'http://3.16.29.118:5000/processText',
+                        method: 'GET',
+                        data: {'userId':7878787878,
+                               'text': text}
+                    }).done(function (response) {
+                       console.log(response);
+                        
+                        
+                    }).fail(function () {
+                        console.log('error AJAX');
+                       
+                    })
+            //aca tiene que venir la funcion AJAX 
         }
     };
 
