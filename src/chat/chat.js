@@ -5,7 +5,7 @@ import MessageArea from './message-area';
 
 
 export default class Chat extends Component {
-
+            $(document).ready(function(){
     autoResponseState = 'pristine'; // pristine, set or canceled
     autoResponseTimer = 0;
 
@@ -77,11 +77,36 @@ export default class Chat extends Component {
                 this.autoResponseState = 'set';
             
             }
-            
-     
+            /*
+      this.writeToMessages({
+                    text: responseAJAX,        
+                        from: 'admin'});
+                }, 500);
             //aca tiene que venir la funcion AJAX 
+        */
         }
     };
+
+//quallieresponse
+function RespuestaQuallie(){
+
+               $.ajax({
+                        url: 'http://3.16.29.118:5000/processText',
+                        method: 'GET',
+                        data: {'userId':7878787878, //recibe id
+                               'text': 'Horas Enero'}
+                    }).done(function (response) {
+                       console.log(response);
+                    return response;
+                        
+                        
+                
+                    }).fail(function (response) {
+                        console.log('error AJAX');
+                       console.log(response);
+                    })
+        
+}
 
     incomingMessage = (msg) => {
         this.writeToMessages(msg); //este es el mensaje que el usuario escribe
@@ -110,4 +135,6 @@ export default class Chat extends Component {
             }
         }
     }
+     });
 }
+ 
