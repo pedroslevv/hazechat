@@ -77,17 +77,24 @@ export default class Chat extends Component {
                 this.autoResponseState = 'set';
             
             }
-            /*
-      this.writeToMessages({
-                    text: responseAJAX,        
-                        from: 'admin'});
-                }, 500);
-            //aca tiene que venir la funcion AJAX 
-        */
+            
+            //respuesta quallie
+            
+    fetch("http://3.16.29.118:5000/processText?userId=7878787878&text=Horas Enero")
+    .then (function(response){
+        this.writeToMessages({
+        text: response,        
+        from: 'admin'}
+           , 500);
+    }
+    );
+            
+//quallieresponse            
+            
         }
     };
 
-//quallieresponse
+
 
 
     incomingMessage = (msg) => {
