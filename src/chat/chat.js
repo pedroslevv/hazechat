@@ -78,19 +78,7 @@ export default class Chat extends Component {
             
             }
             
-            $.ajax({
-                        url: 'http://3.16.29.118:5000/processText',
-                        method: 'GET',
-                        data: {'userId':7878787878,
-                               'text': text}
-                    }).done(function (response) {
-                       console.log(response);
-                        
-                        
-                    }).fail(function () {
-                        console.log('error AJAX');
-                       
-                    })
+     
             //aca tiene que venir la funcion AJAX 
         }
     };
