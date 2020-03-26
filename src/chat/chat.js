@@ -2,7 +2,7 @@ import * as store from 'store'
 import io from 'socket.io-client'
 import { h, Component } from 'preact';
 import MessageArea from './message-area';
-var $ = require('jQuery');
+
 
 export default class Chat extends Component {
 
