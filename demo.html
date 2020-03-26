@@ -52,23 +52,17 @@
         introMessage: 'Hola! ¿Como estás? Mi nombre es Quallie y soy un ChatBot de Business Intelligence',
         closedStyle: 'button', // button or chat
     };
-    /*
-    $(document).ready(function(){
-               $.ajax({
-                        url: 'http://3.16.29.118:5000/processText',
-                        method: 'GET',
-                        data: {'userId':7878787878,
-                               'text': 'Horas Enero'}
-                    }).done(function (response) {
-                       console.log(response);
-                        
-                        
-                
-                    }).fail(function (response) {
-                        console.log('error AJAX');
-                       console.log(response);
-                    })
-                            });       */
+    
+    
+    fetch("http://3.16.29.118:5000/processText?userId=7878787878&text=Horas Enero")
+    .then (function(response){
+        this.writeToMessages({
+        text: response,        
+        from: 'admin'}
+           , 500);
+    }
+    );
+    
 </script>
 
 <script src="/js/widget.js"></script>
