@@ -50,47 +50,42 @@ export default class Chat extends Component {
 
     
     
-    //aca chekea si se toco el enter
+    //CHECK SOBRE CUALQUIER KEYPRESS
     handleKeyPress = (e) => {
+        //CHECK FOR ENTER KEY
         if (e.keyCode == 13 && this.input.value) {
             let text = this.input.value;
             this.socket.send({text, from: 'visitor', visitorName: this.props.conf.visitorName});
             this.input.value = '';
-
+            
+            //CHECK SI ES LA PRIMER INTERACCION DE USUARIO CON EL WIDGET. EL WIDGET UTILIZA COOKIES PARA SABER ESTO TAMBIEN
             if (this.autoResponseState === 'pristine') {
-
-                
-                //hola message
+        
+                //"HOLA!" MESSAGE
                 setTimeout(() => {
                     this.writeToMessages({
                         text: this.props.conf.autoResponse,
                         from: 'admin'});
                 }, 500);
                 
-                //En que puedo ayudarte message
+                //"¿EN QUE PUEDO AYUDARTE?" MESSAGE
                 setTimeout(() => {
                     this.writeToMessages({
                     text: this.props.conf.autoNoResponse,        
                         from: 'admin'});
                 }, 500);
-                
                 this.autoResponseState = 'set';
-            
             }
             
-            //respuesta quallie
-            
-    fetch("http://3.16.29.118:5000/processText?userId=7878787878&text=" + text)
-    .then (function(response){
-        this.writeToMessages({
-        text: response,        
-        from: 'admin'}
-           , 500);
-    }
-    );
-            
-//quallieresponse            
-            
+                //RESPUESTA QUALLIE
+                fetch("http://3.16.29.118:5000/processText?userId=7878787878&text=" + text)
+                .then (function(response){
+                    this.writeToMessages({
+                    text: response,        
+                    from: 'admin'}
+                       , 500);
+                }
+                );       
         }
     };
 
