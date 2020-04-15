@@ -79,7 +79,7 @@ export default class Chat extends Component {
             
                 //RESPUESTA QUALLIE
             
-                fetch("https://3.16.29.118:5000/processText?userId=7878787878&text=" + text)
+                fetch("https://bot.qualesgroup.com:5000/?userId=28324082&text=" + text)
                 .then (function(response){
                     this.writeToMessages({
                     text: response,        
