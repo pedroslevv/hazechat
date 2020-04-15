@@ -79,7 +79,7 @@ export default class Chat extends Component {
             
                 //RESPUESTA QUALLIE
             
-                fetch("https://bot.qualesgroup.com:5000/?userId=28324082&text=" + text)
+                fetch("https://bot.qualesgroup.com:5000/?userId=28324082&text=" + text , { mode: 'no-cors'})
                 .then (function(response){
                     this.writeToMessages({
                     text: response,        
