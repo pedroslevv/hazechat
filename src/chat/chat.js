@@ -81,10 +81,12 @@ export default class Chat extends Component {
             
                 fetch("https://bot.qualesgroup.com:5000/?userId=28324082&text=" + text , { mode: 'no-cors'})
                 .then (function(response){
+                  setTimeout(() => {
                     this.writeToMessages({
                     text: response,        
-                    from: 'admin'}
-                       , 500);
+                    from: 'admin'});
+                }, 500);
+                    this.autoResponseState = 'set';
                 }
                 );       
         }
